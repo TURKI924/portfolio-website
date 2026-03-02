@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Step Form</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; margin:0; padding:0; }
+body { 
+  background: linear-gradient(135deg,#4facfe,#00f2fe); 
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+body.dark { background: linear-gradient(135deg,#141e30,#243b55); }
+
+form { 
+  background: #fff; 
+  padding: 25px 30px; 
+  border-radius: 12px; 
+  width: 400px; 
+  box-shadow:0 8px 20px rgba(0,0,0,.15); 
+  animation: fadeIn 1s; 
+  position: relative;
+}
+body.dark form { background:#1f1f1f; color:#fff; }
+
+#darkToggle { 
+  position:absolute; top:20px; right:20px; 
+  padding:8px 14px; border:none; border-radius:8px; 
+  cursor:pointer; background:#333; color:#fff;
+}
+
+fieldset { border:none; display:none; }
+fieldset.active { display:block; }
+
+legend { font-size:22px; font-weight:bold; margin-bottom:15px; text-align:center; }
+
+.input-group { position: relative; margin-bottom:10px; }
+.input-group i { position:absolute; top:50%; left:12px; transform:translateY(-50%); color:#999; }
+.input-group input { width:100%; padding:10px 12px 10px 40px; border:1px solid #ccc; border-radius:8px; outline:none; }
+.input-group input:focus { border-color:#4facfe; box-shadow:0 0 6px rgba(79,172,254,0.6); }
+.toggle-pass { position:absolute; right:12px; top:50%; transform:translateY(-50%); cursor:pointer; color:#999; }
+
+.radio-group, .checkbox-group { display:flex; gap:15px; margin-bottom:10px; }
+label { display:block; font-weight:600; margin-bottom:6px; color:#333; }
+body.dark label { color:#ddd; }
+
+.strength { height:6px; background:#ddd; border-radius:4px; overflow:hidden; margin-bottom:10px; }
+.strength div { height:100%; width:0; background:red; transition:.3s; }
+
+.buttons { display:flex; justify-content:space-between; margin-top:15px; }
+
+input[type="submit"], button, input[type="reset"], #nextBtn, #prevBtn {
+  padding:10px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition:.3s;
+}
+input[type="submit"], #nextBtn { background:#4facfe; color:#fff; }
+input[type="reset"], #prevBtn { background:#eee; }
+input[type="submit"]:hover, #nextBtn:hover { background:#00c6ff; }
+input[type="reset"]:hover, #prevBtn:hover { background:#ddd; }
+
+.toast { 
+  position: fixed; bottom:20px; right:20px; background:#4caf50; color:#fff; 
+  padding:12px 20px; border-radius:8px; display:none;
+}
+
+#profilePreview { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-top:10px; }
+
+@keyframes fadeIn { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+</style>
+</head>
+<body>
+
+<button id="darkToggle">🌙 Dark</button>
+
+<form id="stepForm">
+
+  <!-- Step 1 -->
+  <fieldset class="active">
+    <legend>Step 1: Info</legend>
+    <div class="input-group">
+      <i class="fa fa-user"></i>
+      <input type="text" id="username" placeholder="Username">
+    </div>
+    <div class="input-group">
+      <i class="fa fa-envelope"></i>
+      <input type="email" id="email" placeholder="Email">
+    </div>
+    <div class="input-group">
+      <i class="fa fa-lock"></i>
+      <input type="password" id="password" placeholder="Password">
+      <i class="fa fa-eye toggle-pass" id="togglePass"></i>
+    </div>
+    <div class="strength"><div id="strengthBar"></div></div>
+    <div class="input-group">
+      <i class="fa fa-lock"></i>
+      <input type="password" id="confirm" placeholder="Confirm Password">
+    </div>
+    <div class="input-group">
+      <i class="fa fa-calendar"></i>
+      <input type="number" id="age" placeholder="Age">
+    </div>
+    <div class="buttons">
+      <button type="button" id="nextBtn">Next ➡️</button>
+    </div>
+  </fieldset>
+
+  <!-- Step 2 -->
+  <fieldset>
+    <legend>Step 2: Details</legend>
+    <label>Gender:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="gender" value="male"> Male</label>
+      <label><input type="radio" name="gender" value="female"> Female</label>
+    </div>
+    <label>Hobbies:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" value="reading"> Reading</label>
+      <label><input type="checkbox" value="sports"> Sports</label>
+      <label><input type="checkbox" value="coding"> Coding</label>
+    </div>
+    <label>Country:</label>
+    <select id="country">
+      <option value="">Choose Country</option>
+      <option value="egypt">Egypt</option>
+      <option value="saudi">Saudi Arabia</option>
+      <option value="uae">UAE</option>
+    </select>
+    <label>Profile Picture:</label>
+    <input type="file" id="profilePic" accept="image/*">
+    <img id="profilePreview" src="" alt="">
+    <div class="buttons">
+      <button type="button" id="prevBtn">⬅️ Prev</button>
+      <button type="button" id="nextBtn2">Next ➡️</button>
+    </div>
+  </fieldset>
+
+  <!-- Step 3 -->
+  <fieldset>
+    <legend>Step 3: Confirm</legend>
+    <h4>Review Your Info</h4>
+    <p id="reviewInfo"></p>
+    <div class="buttons">
+      <button type="button" id="prevBtn2">⬅️ Prev</button>
+      <input type="submit" value="Submit">
+    </div>
+  </fieldset>
+
+</form>
+
+<div class="toast" id="toast">Registered Successfully 🎉</div>
+
+<script>
+const toggle = document.getElementById("darkToggle");
+toggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("dark", document.body.classList.contains("dark"));
+};
+if(localStorage.getItem("dark")) document.body.classList.add("dark");
+
+// Step Form
+const form = document.getElementById("stepForm");
+const fieldsets = form.querySelectorAll("fieldset");
+let current = 0;
+
+const showStep = index => {
+  fieldsets.forEach((fs,i)=>fs.classList.toggle("active",i===index));
+};
+showStep(current);
+
+document.getElementById("nextBtn").onclick = () => {
+  if(validateStep1()) current++;
+  showStep(current);
+};
+document.getElementById("nextBtn2").onclick = () => { current++; showStep(current); };
+document.getElementById("prevBtn").onclick = () => { current--; showStep(current); };
+document.getElementById("prevBtn2").onclick = () => { current--; showStep(current); };
+
+// Password Show/Hide
+const pass = document.getElementById("password");
+document.getElementById("togglePass").onclick = ()=> {
+  pass.type = pass.type==="password"?"text":"password";
+};
+
+// Password Strength
+const strengthBar = document.getElementById("strengthBar");
+pass.oninput = ()=> {
+  let v=pass.value,strength=0;
+  if(v.length>5) strength++; if(/[A-Z]/.test(v)) strength++; 
+  if(/[0-9]/.test(v)) strength++; if(/[^A-Za-z0-9]/.test(v)) strength++;
+  strengthBar.style.width=(strength*25)+"%";
+  strengthBar.style.background=["red","orange","yellow","blue","green"][strength];
+};
+
+// Profile Picture Preview
+const profilePic = document.getElementById("profilePic");
+const preview = document.getElementById("profilePreview");
+profilePic.onchange = e=>{
+  const file=e.target.files[0];
+  if(file) preview.src=URL.createObjectURL(file);
+};
+
+// Step1 Validation
+function validateStep1() {
+  const u=document.getElementById("username").value.trim();
+  const em=document.getElementById("email").value.trim();
+  const p=pass.value; const c=document.getElementById("confirm").value;
+  const a=document.getElementById("age").value;
+  if(!u || !em.includes("@") || p.length<6 || p!==c || a<10 || a>60){
+    alert("Please fill all fields correctly in Step 1");
+    return false;
+  }
+  return true;
+}
+
+// Step3 Review
+const review = document.getElementById("reviewInfo");
+document.getElementById("nextBtn2").onclick = ()=>{
+  let gender = form.querySelector('input[name="gender"]:checked')?.value||"";
+  let hobbies = Array.from(form.querySelectorAll('.checkbox-group input:checked')).map(c=>c.value).join(", ");
+  let country = document.getElementById("country").value;
+  review.innerHTML=`
+    <strong>Username:</strong> ${document.getElementById("username").value}<br>
+    <strong>Email:</strong> ${document.getElementById("email").value}<br>
+    <strong>Age:</strong> ${document.getElementById("age").value}<br>
+    <strong>Gender:</strong> ${gender}<br>
+    <strong>Hobbies:</strong> ${hobbies}<br>
+    <strong>Country:</strong> ${country}<br>
+  `;
+};
+
+// Form Submit
+form.onsubmit = e=>{
+  e.preventDefault();
+  // Save data to LocalStorage
+  const data = {
+    username: document.getElementById("username").value,
+    email: document.getElementById("email").value,
+    age: document.getElementById("age").value,
+    gender: form.querySelector('input[name="gender"]:checked')?.value||"",
+    hobbies: Array.from(form.querySelectorAll('.checkbox-group input:checked')).map(c=>c.value),
+    country: document.getElementById("country").value
+  };
+  localStorage.setItem("formData", JSON.stringify(data));
+
+  // Toast
+  const toast=document.getElementById("toast");
+  toast.style.display="block";
+  setTimeout(()=>{toast.style.display="none"; form.reset(); preview.src=""; current=0; showStep(current); strengthBar.style.width="0";},2000);
+};
+</script>
+</body>
+</html>

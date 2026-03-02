@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This Is Description For My First Page" />
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/128/16792/16792585.png"/>
+    <link rel="stylesheet" href="trainee.css" />
+    <title>STORE</title>
+    <style>.Body1{
+    background-image: linear-gradient(to bottom , #228c61 , transparent);
+}
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;}
+</style>
+    <script></script>
+  </head>
+<!--Project one-->
+  <body class="Body1">
+        <!-- Create Account -->
+    <form>
+  <fieldset>
+    <legend>User Data</legend>
+        <div id="Created">
+        <h1>Create Account</h1>
+        <label for="Username">Enter Your Email If You Forget Username</label>
+        <input id="Username" type="text" placeholder="Username" required />
+        <label for="Email-create">Email</label>
+        <input id="Email-create" type="email" placeholder="Email" required />
+      </div>
+    </form>
+
+        <!-- Sign In -->  
+<form>
+    <div class="Login">
+        <h1>Sign in</h1>
+        <label for="Password">Password</label>
+        <label for="Email-login">Email</label>
+        <input id="Email-login" type="email" placeholder="Email" required />
+        <input
+          id="Password"
+          type="password"
+          placeholder="Password"
+          minlength="8"
+          required
+        />
+        <a href="index2.html">Forgot Your Password</a>
+                <input type="submit" value="send" />
+      </div>
+        </fieldset>
+</form>
+
+    <!-- Welcome Back -->
+      <form>
+        <div id="Welcome">
+        <h1>Welcome Back!</h1>
+        <p>To Keep Connected With Us Please Login With Your Personal Info</p>
+        <div>
+          <br /><!--cssلحد م اتعلم -->
+          <input type="submit" value="Sign in" />
+        </div>
+      </div>
+    </form>
+
+        <!-- Hello Friend -->
+      <form>
+        <div id="Hello">
+        <h1>Hello, Friend!</h1>
+        <p>Enter Your Personal Details And Start Journey With Us</p>
+        <input type="submit" value="Sign Up" />
+      </div>
+      </form>
+
+<form id="Gender">
+    <br><!--cssلحد م اتعلم -->
+<label for="">Gender:</label><br><br>
+<input type="radio" value="male"  name="Gender">  
+<label for="male">Male</label>  
+<input type="radio" value="female" name="Gender"> 
+<label for="female">Female</label>  
+</form>
+<br><!--cssلحد م اتعلم -->
+
+    <!--data list-->
+    <br><!--cssلحد م اتعلم -->
+    
+<form id="Country">
+
+      <label for="Country">Your Country:</label><br>
+          <select name="country" id="Country">
+              <optgroup label="Africa">
+                      <option value="Egypt">Egypt</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Morocco">Morocco</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Tunisia">Tunisia</option>
+                      <option value="Senegal">Senegal</option>
+              </optgroup>
+
+                      <optgroup label="Asia">
+                                <option value="China">China</option>
+                                <option value="India">India</option>
+                                <option value="Japan">Japan</option>
+                                <option value="South Korea">South Korea</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="UAE">UAE</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Malaysia">Malaysia</option>
+                      </optgroup>
+
+          <optgroup label="Europe">
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Greece">Greece</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Norway">Norway</option>
+            <option value="Russia">Russia</option>
+          </optgroup>
+
+<optgroup label="Other">
+    <option value="Other">Other</option>
+</optgroup>
+</select>
+
+<br><br><!--cssلحد م اتعلم -->
+
+    <label for="Language">Your Language:</label><br>
+    <input list="Language" name="Lang">
+<datalist id="Language">
+              <option value="C">
+              <option value="C++">
+              <option value="C#">
+              <option value="PHP">
+              <option value="Ruby">
+              <option value="Go">
+              <option value="Rust">
+              <option value="Swift">
+              <option value="Kotlin">
+              <option value="TypeScript">
+              <option value="Dart">
+              <option value="SQL">
+              <option value="MySQL">
+              <option value="HTML">
+              <option value="CSS">
+              <option value="R">
+              <option value="MATLAB">
+              <option value="Perl">
+              <option value="Scala">
+              <option value="Java">
+              <option value="JavaScript">
+
+</datalist> <br><br>
+      <div>
+        <label for="check">Are you a human?</label><br>
+        <input id="check" type="checkbox">
+      </div>
+    <input type="submit">
+</form>   
+
+<!--Upload A File-->
+  <form>
+    <br><br><!--cssلحد م اتعلم -->
+    <label for="File">Upload a file</label>
+<input id="File" type="file" required>  
+<br><br><!--cssلحد م اتعلم -->
+<!--textarea-->
+
+<textarea class="Text-Area" minlength="20" maxlength="200" placeholder="Description..." cols="25" rows="9" name="content" required></textarea><br>
+<input type="submit">
+
+</form>
+<hr>
+
+<footer style="background:#012303; color:white; text-align:center; padding:20px;">
+  <p>Contact me:</p>
+
+  <!-- ايميل -->
+  <a href="mailto:example@gmail.com" style="color:white; margin:0 10px; font-size:20px;">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+
+  <!-- واتساب -->
+  <a href="https://wa.me/201111111111" target="_blank" style="color:white; margin:0 10px; font-size:20px;">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- فيسبوك -->
+  <a href="https://facebook.com/yourusername" target="_blank" style="color:white; margin:0 10px; font-size:20px;">
+    <i class="fa-brands fa-facebook"></i>
+  </a>
+
+  <p style="margin-top:10px;">© 2026 Mohamed Terkawy. All rights reserved.</p>
+<ul class="Links">
+    <li><a href="#Created">Home</a></li>
+    <li><a href="#Welcome">About</a></li>
+    <li><a href="#Country">Services</a></li>
+    <li><a href="#Gender">Contact</a></li>
+    <li><a href="#Hello">Privacy Policy</a></li>
+</ul>
+<p>Phone: <a href="">01220877415</a></p>
+  <p>Email: <a href="mailto:mohamedterkawy39@gmail.com">mohamedterkawy39@gmail.com</a> </p>
+  <a href="https://www.facebook.com/mohamed.terkawy.2025/" target="_blank">
+  <img src="images/facebook.png" alt="Facebook" width="30">
+</a>
+</footer>
+
+  </body>
+</html>
+

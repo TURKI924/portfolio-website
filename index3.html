@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="trainee.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/8654/8654111.png" type="image/png">
+    <title>Startup Employee Management System</title>
+    <img src="https://img.icons8.com/color/48/000000/employee-card.png" alt="Employee Logo" width="50">
+    <style>
+        *{
+    font-family: "Poppins", sans-serif;
+        }
+        .Body2{
+    height: 100vh;
+    background-image: radial-gradient(circle 300px at right,red , yellow , green);
+}
+    </style>
+
+</head>
+<!--Project Two-->
+<body class="Body2">
+    <header>
+    <div>
+        <div class="Logo">S</div>  
+        <div class="title">Startup Management</div>
+        <div class="subtitle">Employees CRUD + localStorage</div>
+    <div>
+    <button>Exit</button>
+    <button>Logout</button>
+    </div>
+    </div>
+    </header>
+<!--Login-->
+<form>
+    <h1>Admin Login</h1>
+    <div>Username: <strong>admin</strong> | Password: <strong>1234</strong></div><br>
+<div>
+    <label for="loginUser">Username</label>
+<input id="loginUser" type="text" placeholder="admin" required>
+</div>
+<div>
+    <label for="loginPass">Password</label>
+<input id="loginPass" type="password" placeholder="1234" required>
+</div>
+<div><input type="submit" value="Login"></div>
+</form>
+    <!-- STARTUP PAGE -->
+<form>
+    <h1 class="muted">Startup Info</h1>
+    <p>Create / Read / Update / Delete startup</p>
+    <div>
+        <div>
+            <label for="startupName">Startup Name</label>
+            <input id="startupName" type="text" placeholder="Ex: BlueTech" required>
+        </div>
+        <div>
+            <label for="startupImg">Image URL</label>
+            <input id="startupImg" type="text" placeholder="https://..." required>
+        </div>
+        <div>
+            <label for="startupDesc">Description </label><br>
+            <textarea id="startupDesc" class="Text-Area" minlength="20" maxlength="200" placeholder="Short description..." cols="20" rows="5" name="" required></textarea>
+        </div>
+        <div>
+            <label for="startupSector">Business Sector</label>
+            <input id="startupSector" type="text" placeholder="Ex: FinTech">
+        </div>
+        <div class="btns1">
+            <button class="save" type="submit">Save Startup</button>
+            <button class="update" type="hidden">Update Startup</button>
+            <button class="delete" type="hidden">Delete Startup</button>
+        </div>
+        <div>
+            <h1>Preview</h1>
+            <p>No startup saved yet.</p>
+            <h1>Employees</h1>
+            <p class="muted">Tap to manage employees</p>
+            <button class="MngE">Manage Employees</button>
+        </div>
+    </div>
+</form>
+
+    <!-- EMPLOYEES PAGE -->
+        <form>
+            <h1>Employee Management</h1>
+            <p class="muted">CRUD + Filter + Sort + Statistics</p>
+            <button class="back">Back</button>
+            </form>
+        <!-- ADD / EDIT -->
+            <form>
+                <h1>Add Employee</h1>
+                    <div class="Name">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" placeholder="Ex: mohamed" required>
+                    </div>
+                    <div class="Role">
+                        <label for="role">Role</label>
+                        <input id="role" type="text" placeholder="Ex: Frontend Developer" required>
+                    </div>
+                    <div class="salary">
+                        <label for="salary">Salary</label>
+                        <input id="salary" type="text" placeholder="Ex: 15000" required>
+                    </div>
+                    <div class="salary">
+                        <label for="department">Department</label>
+                        <input id="department" type="text" placeholder="Ex: Web" required>
+                    </div>
+                    <div class="btn2">
+                        <button class="btn Sub" type="submit">Add</button>
+                        <button class="btn But1" type="button">Update</button>
+                        <button class="btn But2" type="button">Cancel</button>
+                    </div>
+            </form>
+        <!-- STATS -->
+    <form>
+        <div class="card stats">
+            <h1>Statistics</h1>
+            <div class="stat">
+                <span>Total Employees</span>
+                    <b id="statCount">0</b>
+            </div>
+            <div class="stat">
+                <span>Total Payroll</span>
+                    <b id="statPayroll">0</b>
+            </div>
+            <div class="stat">
+                <span>Highest Salary</span>
+                    <b id="statHighest">0</b>
+            </div>
+            <div class="stat">
+                <span>Total Employees</span>
+                    <b id="statDepts">0</b>
+            </div>
+        </div>
+    </form>
+        <!-- TOOLS -->
+        <form>
+            <div>
+                <label for="searchInput">Search</label>
+                <input id="searchInput" type="text" placeholder="Search by name or role..." required>
+            </div>
+            <div class="tool">
+                <label for="">Filter by Department</label>
+                <select id="deptFilter">
+                    <option value="All">All</option>
+                    <option value="IT">IT</option>
+                    <option value="Web">Web</option>
+                    <option value="Mobile">Mobile</option>
+                    <option value="Backend">Backend</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="UI/UX">UI/UX</option>
+                    <option value="HR">HR</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Data / AI">Data / AI</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                </select>
+            </div>
+            <div class="row wrap">
+                <button class="btn Sal">Sort: Highest Salary</button>
+                <button class="btn Empl">Clear All Employees</button>
+            </div>
+        </form>
+        <!-- TABLE -->
+            <table border="2">
+                <thead>
+                        <tr>
+                            <th>#Serial number</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Salary</th>
+                            <th>Department</th>
+                            <th>Actions</th>
+                        </tr>
+                </thead>
+                    <tbody id="empTableBody">
+                        <tr>
+                            <td>302548401518448</td>
+                            <td>Terkawy</td>
+                            <td>Network Engineer</td>
+                            <td>12000</td>
+                            <td>Frontend</td>
+                            <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="promoteBtn">Promote</button>
+                            <button class="deleteBtn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>302548401517894</td>
+                            <td>Mohamed</td>
+                            <td>Frontend Developer</td>
+                            <td>15000</td>
+                            <td>Web</td>
+                            <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="promoteBtn">Promote</button>
+                            <button class="deleteBtn">Delete</button>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>401548401517894</td>
+                            <td>Ahmed</td>
+                            <td>Backend Developer</td>
+                            <td>18000</td>
+                            <td>Web</td>
+                            <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="promoteBtn">Promote</button>
+                            <button class="deleteBtn">Delete</button>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>715928401517894</td>
+                            <td>Sara</td>
+                            <td>UI/UX Designer</td>
+                            <td>12000</td>
+                            <td>Design</td>
+                            <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="promoteBtn">Promote</button>
+                            <button class="deleteBtn">Delete</button>
+                            </td>
+                        </tr>
+    </tbody>
+</table> 
+</body>
+
+</html>
+        

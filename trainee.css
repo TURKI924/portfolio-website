@@ -1,0 +1,52 @@
+
+body{
+    background-color: rgb(2, 2, 42);
+    margin: 0;
+}
+.parent{
+    display: flex;
+    color: white;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+.parent a{
+    color: white;
+    text-decoration-line: none;
+}
+.parent div{
+    background-color: #0066b4c1;
+    width: 200px;
+    height: 150px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 20px;
+
+}
+.parent div{
+    transition: .35s;
+    width: calc(50% - 10px);
+}
+.parent div:hover{
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+@media (max-width:600px) {
+    .parent{
+        flex-direction: column;
+    }
+
+}
+@media (min-width:601px) and (max-width:992px){
+    .parent{
+        flex-wrap: wrap;
+    }
+    .parent div{
+        width: 49%;
+    }
+}

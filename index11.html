@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura OS - لوحة التحكم الصحية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #22d3ee;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
+
+        input[type=range] {
+            height: 6px;
+            -webkit-appearance: none;
+            background: #334155;
+            border-radius: 5px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #22d3ee;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <header class="max-w-6xl mx-auto flex justify-between items-center mb-10">
+        <div>
+            <h1 class="text-4xl font-black tracking-tighter text-cyan-400">AURA <span class="text-white font-light text-2xl uppercase tracking-widest">OS</span></h1>
+            <p class="text-slate-400 text-sm mt-1">نظام التشغيل الحيوي الذكي</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+            </span>
+            <span class="text-cyan-400 font-medium text-sm">التوأم الرقمي متصل</span>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-6">
+                <i data-lucide="activity" class="text-rose-500 w-8 h-8"></i>
+                <span class="text-xs bg-rose-500/20 text-rose-400 px-3 py-1 rounded-full uppercase">Real-time</span>
+            </div>
+            <div>
+                <p class="text-slate-400">معدل ضربات القلب</p>
+                <div class="flex items-baseline gap-2 mt-2">
+                    <h2 id="hr-display" class="text-7xl font-bold text-rose-500">72</h2>
+                    <span class="text-slate-500 font-medium tracking-widest uppercase">BPM</span>
+                </div>
+            </div>
+            <input type="range" id="hr-slider" min="40" max="180" value="72" class="w-full mt-8">
+        </div>
+
+        <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-6">
+                <i data-lucide="wind" class="text-cyan-400 w-8 h-8"></i>
+                <span class="text-xs bg-cyan-400/20 text-cyan-400 px-3 py-1 rounded-full uppercase">Optimal</span>
+            </div>
+            <div>
+                <p class="text-slate-400">مستوى الأكسجين $SpO_2$</p>
+                <div class="flex items-baseline gap-2 mt-2">
+                    <h2 id="ox-display" class="text-7xl font-bold text-cyan-400">98</h2>
+                    <span class="text-slate-500 font-medium tracking-widest uppercase">%</span>
+                </div>
+            </div>
+            <input type="range" id="ox-slider" min="80" max="100" value="98" class="w-full mt-8 text-cyan-500">
+        </div>
+
+        <div class="glass-card p-8 rounded-[2rem] bg-gradient-to-br from-slate-800 to-slate-900 border-cyan-500/30">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="sparkles" class="text-cyan-400"></i>
+                الذكاء الاصطناعي التنبؤي
+            </h3>
+            <div id="ai-container" class="space-y-4">
+                <p id="ai-insight" class="text-xl text-slate-200 leading-relaxed italic">"نظامك الحيوي مستقر تماماً. استمر في روتينك الحالي."</p>
+                <div id="alert-icon" class="hidden">
+                    <div class="pulse w-12 h-12 bg-rose-600 rounded-full flex items-center justify-center">
+                        <i data-lucide="alert-triangle" class="text-white"></i>
+                    </div>
+                </div>
+            </div>
+            <button onclick="analyzeData()" class="w-full mt-10 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-4 rounded-2xl transition-all shadow-lg shadow-cyan-500/20 active:scale-95">
+                تحديث التوأم الرقمي
+            </button>
+        </div>
+
+    </main>
+
+    <div class="max-w-6xl mx-auto mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="glass-card py-4 rounded-2xl">
+            <p class="text-slate-500 text-xs">درجة حرارة الجسم</p>
+            <p class="text-xl font-bold font-mono text-cyan-200">36.6°C</p>
+        </div>
+        <div class="glass-card py-4 rounded-2xl">
+            <p class="text-slate-500 text-xs">جودة النوم</p>
+            <p class="text-xl font-bold font-mono text-cyan-200">88%</p>
+        </div>
+        <div class="glass-card py-4 rounded-2xl">
+            <p class="text-slate-500 text-xs">تنبؤ المرض</p>
+            <p class="text-xl font-bold font-mono text-cyan-200">منخفض جداً</p>
+        </div>
+        <div class="glass-card py-4 rounded-2xl">
+            <p class="text-slate-500 text-xs">موقع المستخدم</p>
+            <p class="text-xl font-bold font-mono text-cyan-200">القاهرة، مصر</p>
+        </div>
+    </div>
+
+    <script>
+        // تفعيل الأيقونات
+        lucide.createIcons();
+
+        // ربط العناصر
+        const hrSlider = document.getElementById('hr-slider');
+        const oxSlider = document.getElementById('ox-slider');
+        const hrDisplay = document.getElementById('hr-display');
+        const oxDisplay = document.getElementById('ox-display');
+        const aiInsight = document.getElementById('ai-insight');
+        const alertIcon = document.getElementById('alert-icon');
+
+        // تحديث الأرقام عند تغيير السلايدر
+        hrSlider.oninput = function() { hrDisplay.innerText = this.value; }
+        oxSlider.oninput = function() { oxDisplay.innerText = this.value; }
+
+        // محاكاة محرك الذكاء الاصطناعي
+        function analyzeData() {
+            const hr = parseInt(hrSlider.value);
+            const ox = parseInt(oxSlider.value);
+
+            aiInsight.innerText = "جاري تحليل البيانات الحيوية على السحابة...";
+            
+            setTimeout(() => {
+                if (hr > 110 || ox < 94) {
+                    aiInsight.innerText = "تحذير: تم رصد إجهاد حاد ونقص في الأكسجين. ننصح بجلسة تنفس عميق الآن وطلب المساعدة إذا استمر الوضع.";
+                    aiInsight.classList.add('text-rose-400');
+                    alertIcon.classList.remove('hidden');
+                } else if (hr < 50) {
+                    aiInsight.innerText = "معدل النبض منخفض جداً. هل أنت نائم؟ التوأم الرقمي يسجل حالة سكون.";
+                    aiInsight.classList.remove('text-rose-400');
+                    alertIcon.classList.add('hidden');
+                } else {
+                    aiInsight.innerText = "حالتك مثالية. تنبؤاتنا تشير إلى طاقة عالية خلال الـ 4 ساعات القادمة. استغلها!";
+                    aiInsight.classList.remove('text-rose-400');
+                    alertIcon.classList.add('hidden');
+                }
+            }, 800);
+        }
+    </script>
+</body>
+</html>
